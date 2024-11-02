@@ -10,3 +10,6 @@ class AuditaData:
         duration: timedelta = self.end_date - self.start_date
         total_minutes = duration.total_seconds() / 60.0
         return math.ceil(total_minutes)
+    
+    def __str__(self):
+        return f"AuditaData: start_date: {self.start_date}, end_date: {self.end_date}"
