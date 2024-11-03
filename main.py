@@ -4,8 +4,9 @@ from models.audita.audita_data import AuditaData
 from models.audita.audita_data_group import AuditaDataGroup
 from models.filtering.audita_group_filter import AuditaGroupFilter
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QPushButton,
-    QDateTimeEdit, QFileDialog, QLabel, QListWidget
+    QApplication, QWidget, QVBoxLayout, QPushButton, QMessageBox,
+    QFileDialog, QLabel, QHBoxLayout, QCalendarWidget, QListView,
+    QAbstractItemView, QTreeView, QDateTimeEdit
 )
 from PyQt5.QtCore import QDateTime
 
@@ -37,75 +38,58 @@ def main():
     # print(audita_data_group.getTotalTimeInMinutes())
     # print("Program!")
     app = QApplication(sys.argv)
-    window = GUISelectorApp()
+    window = MultiDirectorySelector()
     window.show()
     sys.exit(app.exec_())
 
-class GUISelectorApp(QWidget):
+class MultiDirectorySelector(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Reimagined System")
-        self.setGeometry(200, 200, 400, 300)
+        self.selected_directories = []
+        self.initUI()
 
+    def initUI(self):
         layout = QVBoxLayout()
 
-        # Folder selection
-        self.folder_list = QListWidget()
-        self.folder_button = QPushButton("Select Folders")
-        self.folder_button.clicked.connect(self.select_folders)
-        layout.addWidget(self.folder_list)
-        layout.addWidget(self.folder_button)
+        self.folder_label = QLabel("No folders selected")
+        folder_button = QPushButton("Select Folders")
+        folder_button.clicked.connect(self.select_folders)
 
-        # DateTime selection
-        self.start_label = QLabel("Start Date and Time:")
-        self.start_datetime = QDateTimeEdit(self)
-        self.start_datetime.setCalendarPopup(True)
-        self.start_datetime.setDateTime(QDateTime.currentDateTime())
-
-        self.end_label = QLabel("End Date and Time:")
-        self.end_datetime = QDateTimeEdit(self)
-        self.end_datetime.setCalendarPopup(True)
-        self.end_datetime.setDateTime(QDateTime.currentDateTime())
-
-        layout.addWidget(self.start_label)
-        layout.addWidget(self.start_datetime)
-        layout.addWidget(self.end_label)
-        layout.addWidget(self.end_datetime)
-
-        # Start Button
-        self.start_button = QPushButton("Start")
-        self.start_button.setEnabled(False)
-        self.start_button.clicked.connect(self.start_action)
-        layout.addWidget(self.start_button)
-
-        # Connect slots to check if inputs are complete
-        self.start_datetime.dateTimeChanged.connect(self.check_complete)
-        self.end_datetime.dateTimeChanged.connect(self.check_complete)
-        self.folder_list.itemSelectionChanged.connect(self.check_complete)
+        layout.addWidget(folder_button)
+        layout.addWidget(self.folder_label)
 
         self.setLayout(layout)
+        self.setWindowTitle('Multi-Folder Selector')
+        self.setGeometry(400, 200, 600, 400)
 
     def select_folders(self):
-        folders = []
-        while True:
-            folder = QFileDialog.getExistingDirectory(self, "Select Folder", "", QFileDialog.ShowDirsOnly)
-            if folder:
-                folders.append(folder)
-                self.folder_list.addItem(folder)
-            else:
-                break
-        self.check_complete()
+        dialog = QFileDialog(self, "Select Folders")
+        dialog.setFileMode(QFileDialog.FileMode.Directory)
+        dialog.setOption(QFileDialog.Option.DontUseNativeDialog, True)
 
-    def check_complete(self):
-        # Enable start button only if folder(s) are selected and valid dates are set
-        if self.folder_list.count() > 0 and self.start_datetime.dateTime() < self.end_datetime.dateTime():
-            self.start_button.setEnabled(True)
+        # Enable multiple selection
+        list_view = dialog.findChild(QListView, "listView")
+        if list_view:
+            list_view.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
+        tree_view = dialog.findChild(QTreeView)
+        if tree_view:
+            tree_view.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
+
+        if dialog.exec() == QFileDialog.DialogCode.Accepted:
+            self.selected_directories = dialog.selectedFiles()
+            truncated_paths = [self.truncate_path(path) for path in self.selected_directories]
+            self.folder_label.setText("Selected Folders:\n" + '\n'.join(truncated_paths))
         else:
-            self.start_button.setEnabled(False)
+            self.folder_label.setText("No folders selected")
+
+    def truncate_path(self, path, max_length=95):
+        # Truncate the path if it exceeds max_length, adding "..." in the middle
+        if len(path) > max_length:
+            return path[:15] + "..." + path[-80:]
+        return path
+
     
-    def start_action(self):
-        print("Action!")
 
 if __name__ == "__main__":
     main()
