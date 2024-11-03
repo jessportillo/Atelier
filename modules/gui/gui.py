@@ -4,10 +4,11 @@ from PyQt5.QtWidgets import (
     QAbstractItemView, QTreeView, QDateTimeEdit
 )
 from PyQt5.QtCore import QDateTime
-from typing import Callable
+from typing import Callable, List
+from datetime import datetime
 
 class GUI(QWidget):
-    def __init__(self, program_loop: Callable):
+    def __init__(self, program_loop: Callable[[List[str], datetime], None]):
         super().__init__()
 
         self.program_loop: Callable = program_loop
@@ -107,4 +108,4 @@ class GUI(QWidget):
         print(f"Selected Directories: {self.selected_directories}")
         print(f"Start Date: {self.start_date}")
         print(f"End Data: {self.end_date}")
-        self.program_loop()
+        self.program_loop(self.selected_directories, self.start_date, self.end_date)
