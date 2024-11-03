@@ -47,11 +47,14 @@ class MultiDirectorySelector(QWidget):
         super().__init__()
 
         self.selected_directories = []
+        self.start_date = None
+        self.end_date = None
         self.initUI()
 
     def initUI(self):
         layout = QVBoxLayout()
 
+        #Folder selection
         self.folder_label = QLabel("No folders selected")
         folder_button = QPushButton("Select Folders")
         folder_button.clicked.connect(self.select_folders)
@@ -59,6 +62,36 @@ class MultiDirectorySelector(QWidget):
         layout.addWidget(folder_button)
         layout.addWidget(self.folder_label)
 
+        #Start Datetime
+        self.start_datetime_label = QLabel("Start Date & Time:")
+        self.start_datetime_edit = QDateTimeEdit(self)
+        self.start_datetime_edit.setCalendarPopup(True)
+        self.start_datetime_edit.setDateTime(QDateTime.currentDateTime())
+
+        self.start_datetime_edit.dateTimeChanged.connect(self.set_start_datetime)
+
+        layout.addWidget(self.start_datetime_label)
+        layout.addWidget(self.start_datetime_edit)
+
+        #End Datetime
+        self.end_datetime_label = QLabel("End Date & Time:")
+        self.end_datetime_edit = QDateTimeEdit(self)
+        self.end_datetime_edit.setCalendarPopup(True)
+        self.end_datetime_edit.setDateTime(QDateTime.currentDateTime())
+
+        # Connect the date-time change to update the selected end date
+        self.end_datetime_edit.dateTimeChanged.connect(self.set_end_datetime)
+
+        # Add to the layout
+        layout.addWidget(self.end_datetime_label)
+        layout.addWidget(self.end_datetime_edit)
+
+        # Start Button
+        self.start_button = QPushButton("Start")
+        self.start_button.setEnabled(False)  # Initially disabled
+        self.start_button.clicked.connect(self.start_program)
+        layout.addWidget(self.start_button)
+        
         self.setLayout(layout)
         self.setWindowTitle('Multi-Folder Selector')
         self.setGeometry(400, 200, 600, 400)
@@ -88,8 +121,28 @@ class MultiDirectorySelector(QWidget):
         if len(path) > max_length:
             return path[:15] + "..." + path[-80:]
         return path
-
     
+    def set_start_datetime(self, datetime):
+        self.start_date = datetime
+        self.check_complete()
+
+    def set_end_datetime(self, datetime):
+        self.end_date = datetime
+        self.check_complete()
+
+    def check_complete(self):
+        # Enable Start button only if all conditions are met
+        if self.selected_directories and self.start_date and self.end_date and self.start_date < self.end_date:
+            self.start_button.setEnabled(True)
+        else:
+            self.start_button.setEnabled(False)
+
+    def start_program(self):
+        # Logic to execute when the Start button is clicked
+        print(f"Selected Directories: {self.selected_directories}")
+        print(f"Start Date: {self.start_date}")
+        print(f"End Data: {self.end_date}")
+
 
 if __name__ == "__main__":
     main()
