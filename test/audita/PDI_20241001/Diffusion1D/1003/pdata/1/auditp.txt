@@ -1,0 +1,31 @@
+##TITLE= Audit trail, TopSpin 3.5 pl 2
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ C:/Bruker/TopSpin3.5.2/data/Service/nmr/Diffusion1D/1003/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2018-07-03 09:17:52.859 -0400>,<nmrsu>,<AVIIIHD600>,<go4>,<TopSpin 3.5.2>,
+      <created by zg
+	started at 2018-07-03 09:13:20.140 -0400,
+	POWCHK enabled, PULCHK disabled,
+       configuration hash MD5:
+       BD 09 A4 DC 0C 3E F1 49 17 69 B5 E2 F2 0D C2 6D
+       data hash MD5: 16K * 15
+       2F 84 A4 37 A5 7D BC 41 9B 23 E5 C8 DF 5A C1 20>)
+(   2,<2018-07-03 09:25:07.860 -0400>,<nmrsu>,<AVIIIHD600>,<proc2d>,<TopSpin 3.5.2>,
+      <Start of raw data processing
+       xf2 same F2: SI = 8K WDW = 1 LB = 1 FT_mod = 6 PKNL = 1 PHC0 = -27.53095 PHC1 = 12.2907 F1: SI = 16
+       data hash MD5: 8K * 16
+       D7 3E B1 B0 D8 8E 70 0E 78 1D A1 63 7C 06 26 73>)
+(   3,<2018-07-03 09:25:07.907 -0400>,<nmrsu>,<AVIIIHD600>,<proc2d>,<TopSpin 3.5.2>,
+      <abs2 F2: ABSG = 0 ABSF1 = 10.9962 ABSF2 = -0.9962068
+       data hash MD5: 8K * 16
+       88 51 92 DA AE 67 73 4D CE DF 20 96 78 9A 10 8C>)
+(   4,<2018-07-03 09:25:30.979 -0400>,<nmrsu>,<AVIIIHD600>,<dirdata>,<TopSpin 3.5.2>,
+      <wrpa from 1 1002 "Diffusion1D" "C:\Bruker\TopSpin3.5.2\data\Service\nmr"
+       data hash MD5: 8K * 16
+       88 51 92 DA AE 67 73 4D CE DF 20 96 78 9A 10 8C>)
+##END=
+
+$$ hash MD5
+$$ DB 47 F9 C6 4C 20 22 39 47 52 61 26 D0 27 F3 C9

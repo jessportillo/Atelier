@@ -2,7 +2,7 @@ from typing import List
 import os
 import fnmatch
 
-AUDITA_FILE_NAME = "audita"
+AUDITA_FILE_NAME = "audita.txt"
 
 def get_audita_files_paths(selected_folders: List[str]):
     audita_files_paths: List[str] = []

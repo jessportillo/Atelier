@@ -5,6 +5,7 @@ from models.audita.audita_data_group import AuditaDataGroup
 from models.filtering.audita_group_filter import AuditaGroupFilter
 from modules.gui.gui import GUI
 from modules.search.search import get_audita_files_paths
+from modules.audita.audita import interpret_audita_files
 from PyQt5.QtWidgets import (
     QApplication
 )
@@ -49,6 +50,8 @@ def program_loop(selected_folders: List[str], min_date: datetime, max_date: date
     print(f"Max date {max_date}")
 
     audita_file_paths = get_audita_files_paths(selected_folders)
+    audita_data_group = interpret_audita_files(audita_file_paths)
+
     print(audita_file_paths)
 
 

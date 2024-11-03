@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PeakList modified="2018-10-10T10:53:37">
+  <PeakList1D>
+    <PeakList1DHeader creator="nmrsu" date="2018-10-10T10:53:37" expNo="10" name="Diffusion1D" owner="" procNo="2" source="C:\Bruker\TopSpin3.5.2\data\Service\nmr">
+      <PeakPickDetails>F1=4.839227ppm, F2=4.564511ppm, MI=12.34cm, MAXI=14.78cm, PC=1.000
+      </PeakPickDetails>
+    </PeakList1DHeader>
+    <Peak1D F1="4.7008" intensity="13.50" type="0"/>
+  </PeakList1D>
+</PeakList>

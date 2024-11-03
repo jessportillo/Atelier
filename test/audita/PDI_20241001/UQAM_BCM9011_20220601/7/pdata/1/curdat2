@@ -1,0 +1,23 @@
+##TITLE= Parameter file, TopSpin 3.6.2
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 2	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ 2022-06-01 15:15:26.745 -0400  nmrsu@AVIIIHD600
+$$ C:/Bruker/TopSpin3.6.2/data/service/nmr/UQAM_BCM9011_20220601/2/pdata/1/curdat2
+$$ process C:\Bruker\TopSpin3.6.2\prog\mod\dataserver.exe
+##$DATPATH2= <C:/Bruker/TopSpin3.6.2/data/service/nmr>
+##$DATPATH3= <C:/Bruker/TopSpin3.6.2/data/service/nmr>
+##$DU2= <>
+##$DU3= <>
+##$EXPNO2= 1
+##$EXPNO3= 1
+##$NAME2= <UQAM_BCM9011_20220601>
+##$NAME3= <UQAM_BCM9011_20220601>
+##$PROCNO2= 1
+##$PROCNO3= 1
+##$TYPE= <>
+##$USER2= <>
+##$USER3= <>
+##END=

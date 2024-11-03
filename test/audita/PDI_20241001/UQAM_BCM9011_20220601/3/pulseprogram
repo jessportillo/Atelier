@@ -1,0 +1,255 @@
+# 1 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+;mlevphpp
+;avance-version (12/01/11)
+;homonuclear Hartman-Hahn transfer using MLEV17 sequence
+;   for mixing
+;using two power levels for excitation and spinlock
+;phase sensitive
+;using purge pulses before d1
+;
+;A. Bax & D.G. Davis, J. Magn. Reson. 65, 355-360 (1985)
+;
+;$CLASS=HighRes
+;$DIM=2D
+;$TYPE=
+;$SUBTYPE=
+;$COMMENT=
+;$RECOMMEND=y
+
+
+# 1 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Avance.incl" 1
+;Avance3.incl
+;   for AV III
+;
+;avance-version (13/06/17)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+# 169 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Avance.incl"
+;$Id: Avance3.incl,v 1.10.2.2 2013/08/30 09:43:33 ber Exp $
+# 19 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp" 2
+
+# 1 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Delay.incl" 1
+;Delay.incl  -  include file for commonly used delays
+;
+;version (13/08/07)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+# 9 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Delay.incl"
+;general delays
+
+define delay DELTA
+define delay DELTA1
+define delay DELTA2
+define delay DELTA3
+define delay DELTA4
+define delay DELTA5
+define delay DELTA6
+define delay DELTA7
+define delay DELTA8
+define delay DELTA9
+define delay DELTA10
+define delay DELTA11
+define delay DELTA12
+define delay DELTA13
+define delay DELTA14
+define delay DELTA15
+define delay DELTA16
+
+define delay TAU
+define delay TAU1
+define delay TAU2
+define delay TAU3
+define delay TAU4
+define delay TAU5
+define delay TAU6
+define delay TAU7
+define delay TAU8
+define delay TAU9
+# 40 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Delay.incl"
+define delay INCR1
+define delay INCR2
+define delay INCR3
+define delay INCR4
+define delay INCR5
+define delay INCR6
+
+
+;delays for centering pulses
+# 50 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Delay.incl"
+define delay CEN_HN1
+define delay CEN_HN2
+define delay CEN_HN3
+define delay CEN_HC1
+define delay CEN_HC2
+define delay CEN_HC3
+define delay CEN_HC4
+define delay CEN_HP1
+define delay CEN_HP2
+define delay CEN_CN1
+define delay CEN_CN2
+define delay CEN_CN3
+define delay CEN_CN4
+define delay CEN_CP1
+define delay CEN_CP2
+
+
+;loop counters
+# 69 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Delay.incl"
+define loopcounter COUNTER
+define loopcounter SCALEF
+define loopcounter FACTOR1
+define loopcounter FACTOR2
+define loopcounter FACTOR3
+define loopcounter FACTOR4
+define loopcounter FACTOR5
+define loopcounter FACTOR6
+
+
+# 80 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/Delay.incl"
+;$Id: Delay.incl,v 1.14.2.1 2013/08/30 09:43:33 ber Exp $
+# 20 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp" 2
+
+
+# 23 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+"p5=p6*.667"
+"p7=p6*2"
+"d11=30m"
+"d12=20u"
+
+
+"in0=inf1"
+# 31 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+"d0=in0/2-p1*2/3.1416-4u"
+
+
+"SCALEF=p7*2/p5"
+"FACTOR1=((d9-p17*2)/(p6*64+p5))/SCALEF"
+"l1=FACTOR1*SCALEF"
+# 1 "mc_line 39 file C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp exp. def. part of mc cmd. before ze"
+; dimension 2D; AQ_mode  (F1) States-TPPI
+define delay MCWRK
+define delay MCREST
+define delay d0orig
+"d0orig=d0"
+define loopcounter t1loop
+"t1loop=0"
+define loopcounter ph1loop
+"ph1loop=0"
+define loopcounter ST1CNT
+"ST1CNT = trunc(td1 / 2)"
+"MCREST = d11 - d11"
+"MCWRK = 0.200000*d11"
+
+    dccorr
+# 39 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+# 39 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+1 ze
+# 1 "mc_line 39 file C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp exp. def. of mc cmd. after ze"
+LBLAV, MCWRK
+      "d0=d0orig + t1loop * in0 "
+      "phval1 = (ph1loop % 4) * 90"
+      MCWRK ip1 + phval1
+# 40 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+# 1 "mc_line 40 file C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp exp. start label for mc cmd."
+2 MCWRK  * 2
+LBLF1, MCWRK  * 2
+LBLST1, MCWRK
+  MCREST
+# 41 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+
+3 d12 pl10:f1
+  p17 ph2
+  p17*2 ph3
+  d1 pl1:f1
+
+  p1 ph1
+  d0
+  4u pl10:f1
+  (p17 ph26)
+						;begin MLEV17
+4 (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph22 p7 ph23 p6 ph22)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p6 ph24 p7 ph25 p6 ph24)
+  (p5 ph23)
+  lo to 4 times l1 
+						;end MLEV17
+  (p17 ph26) 
+  go=2 ph31
+# 1 "mc_line 73 file C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp exp. mc cmd. in line"
+  MCWRK  wr #0 if #0 zd 
+
+  "ph1loop+=1"
+      "d0=d0orig + t1loop * in0 "
+      "phval1 = (ph1loop % 4) * 90"
+      MCWRK ip1 + phval1
+  lo to LBLF1 times 2
+  MCWRK 
+
+  "t1loop+=1"
+      "d0=d0orig + t1loop * in0 "
+      "phval1 = (ph1loop % 4) * 90"
+      MCWRK ip1 + phval1
+  lo to LBLST1 times ST1CNT
+  MCWRK 
+  "t1loop=0"
+  "ph1loop=0"
+  MCWRK rf #0
+  lo to LBLAV times tdav
+# 74 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+exit
+# 77 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+ph1=0 2 2 0 1 3 3 1
+ph2=0
+ph3=1
+ph22=3 1 3 1 0 2 0 2
+ph23=0 2 0 2 1 3 1 3
+ph24=1 3 1 3 2 0 2 0
+ph25=2 0 2 0 3 1 3 1
+ph26=0 2 0 2 1 3 1 3
+ph31=0 2 2 0 1 3 3 1
+
+
+;pl1 : f1 channel - power level for pulse (default)
+;pl10: f1 channel - power level for TOCSY-spinlock
+;p1 : f1 channel -  90 degree high power pulse
+;p5 : f1 channel -  60 degree low power pulse
+;p6 : f1 channel -  90 degree low power pulse
+;p7 : f1 channel - 180 degree low power pulse
+;p17: f1 channel - trim pulse                        [2.5 msec]
+;d0 : incremented delay (2D)
+;d1 : relaxation delay; 1-5 * T1
+;d9 : TOCSY mixing time
+;d12: delay for power switching                      [20 usec]
+;l1: loop for MLEV cycle: (((p6*64) + p5) * l1) + (p17*2) = mixing time
+;inf1: 1/SW = 2 * DW
+;in0: 1/(1 * SW) = 2 * DW
+;nd0: 1
+;ns: 8 * n
+;ds: 16
+;td1: number of experiments
+;FnMODE: States-TPPI, TPPI, States or QSEQ
+# 109 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+;Processing
+
+;PHC0(F1): 180
+;PHC1(F1): -180
+;FCOR(F1): 1
+
+# 117 "C:/Bruker/TopSpin3.6.2/exp/stan/nmr/lists/pp/mlevphpp"
+;$Id: mlevphpp,v 1.9 2012/01/31 17:49:27 ber Exp $

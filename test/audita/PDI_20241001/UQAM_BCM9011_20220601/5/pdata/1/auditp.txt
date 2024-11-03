@@ -1,0 +1,27 @@
+##TITLE= Audit trail, TopSpin 3.6.2
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ C:\Bruker\TopSpin3.6.2\data\service\nmr/UQAM_BCM9011_20220601/5/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2022-06-01 19:40:45.234 -0400>,<nmrsu>,<AVIIIHD600>,<go4>,<TopSpin 3.6.2>,
+      <created by zg
+	started at 2022-06-01 18:07:25.871 -0400,
+	POWCHK enabled, PULCHK disabled,
+       configuration hash MD5:
+       51 EA 35 29 ED 2F 56 0B DA 63 15 4F 4D F3 D9 A8
+       data hash MD5: 2K * 256
+       EA 1B 6C 4A E3 3B 44 60 91 29 BB AB B0 24 2A 22>)
+(   2,<2022-06-02 08:42:14.812 -0400>,<nmrsu>,<AVIIIHD600>,<proc2d>,<TopSpin 3.6.2>,
+      <Start of raw data processing
+       xfb F2: SI = 1K WDW = 4 SSB = 2 FT_mod = 6 PKNL = 1 PHC0 = -105.5206 PHC1 = -2.67839 F1: SI = 1K WDW = 4 SSB = 2 FT_mod = 4 FCOR = 1 PHC0 = 90.71743 PHC1 = -180
+       data hash MD5: 1K * 1K
+       63 88 23 86 B9 CF 37 56 1B 08 B0 94 EA E4 C2 60>)
+(   3,<2022-06-02 08:42:21.796 -0400>,<nmrsu>,<AVIIIHD600>,<apkm>,<TopSpin 3.6.2>,
+      <apkm 
+       data hash MD5: 1K * 1K
+       B6 47 9B 6B 9C 50 5A 11 C3 12 04 52 E7 5C E3 CA>)
+##END=
+
+$$ hash MD5
+$$ CC B7 47 06 EF 6E 39 0D BA 7C 9D 84 C4 01 0A 1A
