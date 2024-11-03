@@ -1,14 +1,16 @@
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QPushButton, QMessageBox,
-    QFileDialog, QLabel, QHBoxLayout, QCalendarWidget, QListView,
+    QWidget, QVBoxLayout, QPushButton,
+    QFileDialog, QLabel, QListView,
     QAbstractItemView, QTreeView, QDateTimeEdit
 )
 from PyQt5.QtCore import QDateTime
+from typing import Callable
 
-class GUI:
-    def __init__(self):
+class GUI(QWidget):
+    def __init__(self, program_loop: Callable):
         super().__init__()
 
+        self.program_loop: Callable = program_loop
         self.selected_directories = []
         self.start_date = None
         self.end_date = None
@@ -105,3 +107,4 @@ class GUI:
         print(f"Selected Directories: {self.selected_directories}")
         print(f"Start Date: {self.start_date}")
         print(f"End Data: {self.end_date}")
+        self.program_loop()

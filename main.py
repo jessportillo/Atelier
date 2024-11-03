@@ -36,10 +36,12 @@ def main():
     # print(audita_data_group.getTotalTimeInMinutes())
     # print("Program!")
     app = QApplication(sys.argv)
-    window = GUI()
+    window = GUI(program_loop)
     window.show()
     sys.exit(app.exec_())
-    
+
+def program_loop():
+    print("Program Loop !")
 
 
 if __name__ == "__main__":
