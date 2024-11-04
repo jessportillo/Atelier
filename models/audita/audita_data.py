@@ -2,9 +2,10 @@ from datetime import datetime, timedelta
 import math
 
 class AuditaData:
-    def __init__(self, start_date: datetime, end_date: datetime):
+    def __init__(self, start_date: datetime, end_date: datetime, path: str):
         self.start_date = start_date
         self.end_date = end_date
+        self.path = path
 
     def getTotalTimeInMinutes(self):
         duration: timedelta = self.end_date - self.start_date
@@ -12,4 +13,4 @@ class AuditaData:
         return math.ceil(total_minutes)
     
     def __str__(self):
-        return f"AuditaData: start_date: {self.start_date}, end_date: {self.end_date}"
+        return f"AuditaData: start_date: {self.start_date}, end_date: {self.end_date}, path: {self.path}"

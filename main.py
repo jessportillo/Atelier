@@ -49,10 +49,13 @@ def program_loop(selected_folders: List[str], min_date: datetime, max_date: date
     print(f"Min date {min_date}")
     print(f"Max date {max_date}")
 
-    audita_file_paths = get_audita_files_paths(selected_folders)
-    audita_data_group = interpret_audita_files(audita_file_paths)
+    audita_file_paths: List[str] = get_audita_files_paths(selected_folders)
+    audita_data_list: List[AuditaDataGroup] = interpret_audita_files(audita_file_paths)
 
-    print(audita_file_paths)
+    print("Audita Data!")
+    for audita_data in audita_data_list:
+        print(audita_data)
+    print("End Audita Data!")
 
 
 if __name__ == "__main__":
