@@ -1,11 +1,14 @@
 from typing import List
 from models.audita.audita_data import AuditaData
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 import os
 import pytz
 
 TARGET = "started at"
+LOWER_EXTREMUM_THRESHOLD = timedelta(minutes=1)
+HIGHER_EXTREMUM_THRESHOLD = timedelta(hours=24)
+DEFAULT_ASSIGNEMENT_DURATION = timedelta(minutes=5)
 
 def interpret_audita_files(audita_file_paths: List[str]):
     audita_data_list: List[AuditaData] = []
@@ -17,7 +20,17 @@ def interpret_audita_files(audita_file_paths: List[str]):
 def open_audita_file_and_interpret(audita_file_path: str) -> AuditaData:
     start_time: datetime = get_start_time(audita_file_path)
     end_time: datetime = get_end_time(audita_file_path)
-    return AuditaData(start_time, end_time, audita_file_path)
+    audita_data: AuditaData
+    if check_for_extremums(start_time, end_time):
+        audita_data = AuditaData(start_time, start_time + DEFAULT_ASSIGNEMENT_DURATION, audita_file_path)
+    else:
+        audita_data = AuditaData(start_time, end_time, audita_file_path)
+    return audita_data
+
+def check_for_extremums(start_time: datetime, end_time: datetime):
+    duration: timedelta = end_time - start_time
+    return duration < LOWER_EXTREMUM_THRESHOLD or duration > HIGHER_EXTREMUM_THRESHOLD
+
 
 def get_start_time(audita_file_path: str) -> datetime:
     audita_start_line: str = ""
