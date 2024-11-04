@@ -6,6 +6,7 @@ from models.filtering.audita_group_filter import AuditaGroupFilter
 from modules.gui.gui import GUI
 from modules.search.search import get_audita_files_paths
 from modules.audita.audita import interpret_audita_files
+from modules.filtering.filter import filter_audita_data_list
 from PyQt5.QtWidgets import (
     QApplication
 )
@@ -50,12 +51,9 @@ def program_loop(selected_folders: List[str], min_date: datetime, max_date: date
     print(f"Max date {max_date}")
 
     audita_file_paths: List[str] = get_audita_files_paths(selected_folders)
-    audita_data_list: List[AuditaDataGroup] = interpret_audita_files(audita_file_paths)
-
-    print("Audita Data!")
-    for audita_data in audita_data_list:
-        print(audita_data)
-    print("End Audita Data!")
+    audita_data_list: List[AuditaData] = interpret_audita_files(audita_file_paths)
+    audita_data_group : AuditaDataGroup = filter_audita_data_list(audita_data_list, min_date, max_date)
+    print(f"Total minutes: {audita_data_group.getTotalTimeInMinutes()}")
 
 
 if __name__ == "__main__":
