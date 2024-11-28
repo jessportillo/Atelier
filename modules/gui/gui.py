@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import (
     QFileDialog, QLabel, QListView,
     QAbstractItemView, QTreeView, QDateTimeEdit
 )
-from PyQt5.QtCore import QDateTime
+from PyQt5.QtCore import QDateTime,Qt
 from typing import Callable
 
 class GUI(QWidget):
@@ -73,6 +73,10 @@ class GUI(QWidget):
         tree_view = dialog.findChild(QTreeView)
         if tree_view:
             tree_view.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
+
+            #Enable sorting in ascending order 
+            tree_view.setSortingEnabled(True)
+            tree_view.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
         if dialog.exec() == QFileDialog.DialogCode.Accepted:
             self.selected_directories = dialog.selectedFiles()
