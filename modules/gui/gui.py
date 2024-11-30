@@ -22,8 +22,11 @@ class GUI(QWidget):
 
         #Folder selection
         self.folder_label = QLabel("Aucun dossier sélectionné")
+        self.folder_label.setStyleSheet("color: red;")
         folder_button = QPushButton("Sélectionner au moins un dossier")
         folder_button.clicked.connect(self.select_folders)
+
+        folder_button.setStyleSheet("color: blue;")
 
         layout.addWidget(folder_button)
         layout.addWidget(self.folder_label)
