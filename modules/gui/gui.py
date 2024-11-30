@@ -21,15 +21,15 @@ class GUI(QWidget):
         layout = QVBoxLayout()
 
         #Folder selection
-        self.folder_label = QLabel("No folders selected")
-        folder_button = QPushButton("Select Folders")
+        self.folder_label = QLabel("Aucun dossier sélectionné")
+        folder_button = QPushButton("Sélectionner au moins un dossier")
         folder_button.clicked.connect(self.select_folders)
 
         layout.addWidget(folder_button)
         layout.addWidget(self.folder_label)
 
         #Start Datetime
-        self.start_datetime_label = QLabel("Start Date & Time:")
+        self.start_datetime_label = QLabel("Date et heure de début:")
         self.start_datetime_edit = QDateTimeEdit(self)
         self.start_datetime_edit.setCalendarPopup(True)
         self.start_datetime_edit.setDateTime(QDateTime.currentDateTime())
@@ -40,7 +40,7 @@ class GUI(QWidget):
         layout.addWidget(self.start_datetime_edit)
 
         #End Datetime
-        self.end_datetime_label = QLabel("End Date & Time:")
+        self.end_datetime_label = QLabel("Date et heure de fin:")
         self.end_datetime_edit = QDateTimeEdit(self)
         self.end_datetime_edit.setCalendarPopup(True)
         self.end_datetime_edit.setDateTime(QDateTime.currentDateTime())
@@ -53,17 +53,17 @@ class GUI(QWidget):
         layout.addWidget(self.end_datetime_edit)
 
         # Start Button
-        self.start_button = QPushButton("Start")
+        self.start_button = QPushButton("Commencer")
         self.start_button.setEnabled(False)  # Initially disabled
         self.start_button.clicked.connect(self.start_program)
         layout.addWidget(self.start_button)
         
         self.setLayout(layout)
-        self.setWindowTitle('Multi-Folder Selector')
+        self.setWindowTitle('Sélecteur de dossiers multiples')
         self.setGeometry(400, 200, 600, 400)
 
     def select_folders(self):
-        dialog = QFileDialog(self, "Select Folders")
+        dialog = QFileDialog(self, "Sélectionner au moins un dossier")
         dialog.setFileMode(QFileDialog.FileMode.Directory)
         dialog.setOption(QFileDialog.Option.DontUseNativeDialog, True)
 
@@ -84,7 +84,7 @@ class GUI(QWidget):
             truncated_paths = [self.truncate_path(path) for path in self.selected_directories]
             self.folder_label.setText("Selected Folders:\n" + '\n'.join(truncated_paths))
         else:
-            self.folder_label.setText("No folders selected")
+            self.folder_label.setText("Aucun dossier sélectionné")
 
     def truncate_path(self, path, max_length=95):
         # Truncate the path if it exceeds max_length, adding "..." in the middle
