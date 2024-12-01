@@ -22,7 +22,7 @@ def program_loop(selected_folders: List[str], min_date: datetime, max_date: date
     audita_file_paths: List[str] = get_audita_files_paths(selected_folders)
     audita_data_list: List[AuditaData] = interpret_audita_files(audita_file_paths)
     audita_data_group : AuditaDataGroup = filter_audita_data_list(audita_data_list, min_date, max_date)
-    print(f"Total minutes: {audita_data_group.getTotalTimeInMinutes()}")
+    print(f"Nombre de minutes totales: {audita_data_group.getTotalTimeInMinutes()}")
 
 
 if __name__ == "__main__":
