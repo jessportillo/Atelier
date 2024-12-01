@@ -57,6 +57,11 @@ class GUI(QWidget):
 
         # Start Button
         self.start_button = QPushButton("Commencer")
+        self.start_button.setStyleSheet("""
+        QPushButton:hover {
+                color: blue;   
+            }
+                                        """)
         self.start_button.setEnabled(False)  # Initially disabled
         self.start_button.clicked.connect(self.start_program)
         layout.addWidget(self.start_button)
@@ -113,6 +118,6 @@ class GUI(QWidget):
     def start_program(self):
         # Logic to execute when the Start button is clicked
         print(f"Selected Directories: {self.selected_directories}")
-        print(f"Start Date: {self.start_date}")
-        print(f"End Data: {self.end_date}")
+        print(f"Date de début: {self.start_date}")
+        print(f"Date de fin: {self.end_date}")
         self.program_loop(self.selected_directories, self.start_date, self.end_date)
