@@ -26,7 +26,15 @@ class GUI(QWidget):
         folder_button = QPushButton("Sélectionner au moins un dossier")
         folder_button.clicked.connect(self.select_folders)
 
-        folder_button.setStyleSheet("color: blue;")
+        folder_button.setStyleSheet("""
+                                   QPushButton { 
+                                    color: blue;
+                                    }
+                                    QPushButton:hover {
+                                    font-weight: bold;
+                                    }
+
+                                    """)
 
         layout.addWidget(folder_button)
         layout.addWidget(self.folder_label)
@@ -57,11 +65,16 @@ class GUI(QWidget):
 
         # Start Button
         self.start_button = QPushButton("Commencer")
+        self.start_button.setFixedHeight(25)
         self.start_button.setStyleSheet("""
         QPushButton:hover {
-                color: blue;   
+                                        background-color: white;
+                                        color: blue;  
+                                        font-weight: bold;
+                                        border: 1px solid black;
+                                        border-radius: 5px; 
             }
-                                        """)
+                                       """)
         self.start_button.setEnabled(False)  # Initially disabled
         self.start_button.clicked.connect(self.start_program)
         layout.addWidget(self.start_button)
