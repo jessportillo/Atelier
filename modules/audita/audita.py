@@ -46,7 +46,7 @@ def get_start_time(audita_file_path: str) -> datetime:
         date_obj: datetime = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S.%f %z')
     
     if not date_obj:
-        raise ValueError("Start Date not found.")
+        raise ValueError("Date de début introuvable, veuillez modifier la date de début.")
     
     return date_obj
 
