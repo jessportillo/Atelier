@@ -95,13 +95,33 @@ class GUI(QWidget):
         tree_view = dialog.findChild(QTreeView)
         if tree_view:
             tree_view.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
-
-        #Enable sorting in ascending order 
             tree_view.setSortingEnabled(True)
             tree_view.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
         if dialog.exec() == QFileDialog.DialogCode.Accepted:
-            self.selected_directories = dialog.selectedFiles()
+            # Filter selections to include only the currently displayed level
+            selected_files = dialog.selectedFiles()
+            current_path = dialog.directory().absolutePath()
+            
+            # Ensure only directories at the current level are selected
+            valid_directories = [
+                path for path in selected_files if path.startswith(current_path) and path != current_path
+            ]
+            self.selected_directories = valid_directories
+
+            # Set the filtered directories explicitly in the dialog
+            if tree_view:
+                tree_selection_model = tree_view.selectionModel()
+                indexes = tree_selection_model.selectedIndexes()
+                
+                # Clear parent folder selections
+                for index in indexes:
+                    if index.data() == current_path:
+                        tree_selection_model.select(
+                            index, 
+                            QAbstractItemView.SelectionMode.Deselect
+                        )
+
             truncated_paths = [self.truncate_path(path) for path in self.selected_directories]
             self.folder_label.setText("Selected Folders:\n" + '\n'.join(truncated_paths))
         else:
