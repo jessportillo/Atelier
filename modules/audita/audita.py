@@ -6,8 +6,9 @@ import os
 import pytz
 
 TARGET = "started at"
+TARGET_COMPLETE = "completed at"
 LOWER_EXTREMUM_THRESHOLD = timedelta(minutes=1)
-HIGHER_EXTREMUM_THRESHOLD = timedelta(hours=24)
+HIGHER_EXTREMUM_THRESHOLD = timedelta(hours=4000)
 DEFAULT_ASSIGNEMENT_DURATION = timedelta(minutes=5)
 
 def interpret_audita_files(audita_file_paths: List[str]):
@@ -39,6 +40,7 @@ def get_start_time(audita_file_path: str) -> datetime:
             line: str
             if TARGET in line:
                 audita_start_line = line
+                break 
     date_match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} -\d{4})', audita_start_line)
 
     if date_match:
@@ -51,7 +53,20 @@ def get_start_time(audita_file_path: str) -> datetime:
     return date_obj
 
 def get_end_time(audita_file_path: str) -> datetime:
-    timestamp = os.path.getmtime(audita_file_path)
-    uqam_timezone = pytz.timezone('America/New_York')
-    last_modified_date = datetime.fromtimestamp(timestamp, uqam_timezone)
-    return last_modified_date
+    audita_start_line: str = ""
+    with open(audita_file_path, "r") as f:
+        for line in f:
+            line: str
+            if TARGET_COMPLETE in line:
+                audita_start_line = line
+                break 
+    date_match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} -\d{4})', audita_start_line)
+
+    if date_match:
+        date_str: str = date_match.group(1)
+        date_obj: datetime = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S.%f %z')
+    
+    if not date_obj:
+        raise ValueError("Date de début introuvable, veuillez modifier la date de début.")
+    
+    return date_obj

@@ -31,7 +31,7 @@ def get_directories() -> List[str]:
     return selected_directories
 
 def get_date(prompt_message: str) -> datetime:
-    default_timezone = pytz.UTC  # Set your default timezone here
+    default_timezone = pytz.timezone("America/New_York")
     while True:
         try:
             date_input = input(f"{prompt_message} (format: YYYY-MM-DD HH:MM): ").strip()
