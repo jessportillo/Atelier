@@ -157,4 +157,4 @@ class GUI(QWidget):
         # Logic to execute when the Start button is clicked
         totalTimeInMinutes = self.program_loop(self.selected_directories, self.start_date, self.end_date)
 
-        self.result_label.setText(f"Résultat: {totalTimeInMinutes}")
+        self.result_label.setText(f"Nombre total de minutes: {totalTimeInMinutes}")
