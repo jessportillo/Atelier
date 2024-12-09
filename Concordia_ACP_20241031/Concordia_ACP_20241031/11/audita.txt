@@ -1,0 +1,20 @@
+##TITLE= Audit trail, TopSpin 3.6.5
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ C:/Bruker/TopSpin3.6.2/data/service/nmr/Concordia_ACP_20241031/11/audita.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2024-10-31 15:59:21.327 -0400>,<nmrsu>,<AVIIIHD600>,<go4>,<TopSpin 3.6.5>,
+      <created by zg on data set with UUID '73bbad46-97c2-11ef-8732-7446a0baeb2d'
+       started at 2024-10-31 15:58:09.384 -0400,
+       POWCHK enabled, PULCHK disabled,
+       completed at 2024-10-31 15:59:21.296 -0400
+
+       configuration hash MD5:
+       24 E8 C6 37 19 27 8C 01 99 C1 BC 71 15 00 5A 07
+       data hash MD5: 64K
+       7A 7C A0 68 0E 80 3B 6B A5 AB EC 9F 88 39 43 52>)
+##END=
+
+$$ hash MD5
+$$ 50 E1 75 8C 0C CF 24 7F E2 B3 18 D0 A9 B8 DA 26

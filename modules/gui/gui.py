@@ -78,6 +78,11 @@ class GUI(QWidget):
         self.start_button.setEnabled(False)  # Initially disabled
         self.start_button.clicked.connect(self.start_program)
         layout.addWidget(self.start_button)
+
+        # Result Label
+        self.result_label = QLabel("Résultat en minute: ")
+        self.result_label.setStyleSheet("color: green;")
+        layout.addWidget(self.result_label)
         
         self.setLayout(layout)
         self.setWindowTitle('Sélecteur de dossiers multiples')
@@ -150,7 +155,6 @@ class GUI(QWidget):
 
     def start_program(self):
         # Logic to execute when the Start button is clicked
-        print(f"Selected Directories: {self.selected_directories}")
-        print(f"Date de début: {self.start_date}")
-        print(f"Date de fin: {self.end_date}")
-        self.program_loop(self.selected_directories, self.start_date, self.end_date)
+        totalTimeInMinutes = self.program_loop(self.selected_directories, self.start_date, self.end_date)
+
+        self.result_label.setText(f"Résultat: {totalTimeInMinutes}")

@@ -1,0 +1,27 @@
+##TITLE= Audit trail, TopSpin 3.6.5
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ C:/Bruker/TopSpin3.6.2/data/service/nmr/Concordia_ACP_20241031/2/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2024-10-31 08:57:32.684 -0400>,<nmrsu>,<AVIIIHD600>,<go4>,<TopSpin 3.6.5>,
+      <acquisition in progress>)
+(   2,<2024-10-31 08:58:09.276 -0400>,<nmrsu>,<AVIIIHD600>,<proc1d>,<TopSpin 3.6.5>,
+      <Start of raw data processing
+       efp LB = 0.3 FT_mod = 6 PKNL = 1 PHC0 = 17.35968 PHC1 = 107.8503 SI = 32K 
+       data hash MD5: 32K
+       02 9F E1 9D D3 FF 07 71 C2 E9 04 47 40 8E 78 88>)
+(   3,<2024-10-31 08:58:12.167 -0400>,<nmrsu>,<AVIIIHD600>,<proc1d>,<TopSpin 3.6.5>,
+      <apk 
+       data hash MD5: 32K
+       A2 5F FA F5 89 AE D0 9C FD 29 70 79 E7 36 44 9F>)
+(   4,<2024-10-31 10:17:57.834 -0400>,<nmrsu>,<AVIIIHD600>,<audit>,<TopSpin 3.6.5>,
+      <user comment:
+       TITLE=ED2-CDs (23 mg in 600 ul D2O)
+       1H NMR - Water suppression with excitation sculptingTITLE_END
+       data hash MD5: 32K
+       A2 5F FA F5 89 AE D0 9C FD 29 70 79 E7 36 44 9F>)
+##END=
+
+$$ hash MD5
+$$ 19 F2 A5 3A 0E 0F DE 15 66 3D 22 90 D1 AD 5B 66
