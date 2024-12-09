@@ -80,7 +80,7 @@ class GUI(QWidget):
         layout.addWidget(self.start_button)
 
         # Result Label
-        self.result_label = QLabel("Résultat en minute: ")
+        self.result_label = QLabel("Nombre total de minutes: ")
         self.result_label.setStyleSheet("color: green;")
         layout.addWidget(self.result_label)
         
@@ -128,7 +128,7 @@ class GUI(QWidget):
                         )
 
             truncated_paths = [self.truncate_path(path) for path in self.selected_directories]
-            self.folder_label.setText("Selected Folders:\n" + '\n'.join(truncated_paths))
+            self.folder_label.setText("Dossier(s) sélectionné(s):\n" + '\n'.join(truncated_paths))
         else:
             self.folder_label.setText("Aucun dossier sélectionné")
 
