@@ -1,7 +1,0 @@
-Tue May 03 09:55:10 {EDT} 2016 Gradres set to default due to error 0.008
-Tue May 03 09:55:10 {EDT} 2016 -----------------------------------------------------------------
-Tue May 03 09:55:10 {EDT} 2016 diff version diff-4.13 started from TopSpin version 3.5
-Tue May 03 09:55:10 {EDT} 2016 initAcqu: nbl = 1
-Tue May 03 09:55:10 {EDT} 2016 checkDims: 2D = 1 2Dp = 1
-Tue May 03 09:55:10 {EDT} 2016 initReadXml
-Tue May 03 09:55:10 {EDT} 2016 initReadXml

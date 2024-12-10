@@ -40,7 +40,8 @@ class GUI(QWidget):
         layout.addWidget(self.folder_label)
 
         #Start Datetime
-        self.start_datetime_label = QLabel("Date et heure de début:")
+        self.start_datetime_label = QLabel("Sélectionner la date et heure du début de la facturation:")
+        self.start_datetime_label.setStyleSheet("color: blue;")
         self.start_datetime_edit = QDateTimeEdit(self)
         self.start_datetime_edit.setCalendarPopup(True)
         self.start_datetime_edit.setDateTime(QDateTime.currentDateTime())
@@ -51,7 +52,8 @@ class GUI(QWidget):
         layout.addWidget(self.start_datetime_edit)
 
         #End Datetime
-        self.end_datetime_label = QLabel("Date et heure de fin:")
+        self.end_datetime_label = QLabel("Sélectionner la date et heure de fin de la facturation:")
+        self.end_datetime_label.setStyleSheet("color: blue;")
         self.end_datetime_edit = QDateTimeEdit(self)
         self.end_datetime_edit.setCalendarPopup(True)
         self.end_datetime_edit.setDateTime(QDateTime.currentDateTime())
@@ -85,7 +87,7 @@ class GUI(QWidget):
         layout.addWidget(self.result_label)
         
         self.setLayout(layout)
-        self.setWindowTitle('Sélecteur de dossiers multiples')
+        self.setWindowTitle('Outil de facturation TopSpin')
         self.setGeometry(400, 200, 600, 400)
 
     def select_folders(self):

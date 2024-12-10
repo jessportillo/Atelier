@@ -1,9 +1,0 @@
-VTC_REG_PID_SET_CH1=\
-<pid_settings type="probehead">
-   <standard_pid proportional="0.958" integral="180.892" differential="30.149" />
-   <temperature selftune="307.000" min="257.000" max="357.000" />
-   <vta type="2" sensor="1" connected_sensors="1" />
-   <gasflow selftune="400.000" min="350.000" max="450.000" />
-   <pics checksum="" name=" PA BBO 600S3 BBF-H-D-05 Z" />
-   <checksum value="4C2E6E40" />
-</pid_settings>
