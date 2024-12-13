@@ -2,14 +2,11 @@ from typing import List
 from models.audita.audita_data import AuditaData
 from datetime import datetime, timedelta
 import re
-import os
-import pytz
 
-TARGET = "started at"
-TARGET_COMPLETE = "completed at"
 LOWER_EXTREMUM_THRESHOLD = timedelta(minutes=1)
 HIGHER_EXTREMUM_THRESHOLD = timedelta(hours=4000)
 DEFAULT_ASSIGNEMENT_DURATION = timedelta(minutes=5)
+DATETIME_PATTERN = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} [+-]\d{4}"
 
 def interpret_audita_files(audita_file_paths: List[str]):
     audita_data_list: List[AuditaData] = []
@@ -32,41 +29,34 @@ def check_for_extremums(start_time: datetime, end_time: datetime):
     duration: timedelta = end_time - start_time
     return duration < LOWER_EXTREMUM_THRESHOLD or duration > HIGHER_EXTREMUM_THRESHOLD
 
-
 def get_start_time(audita_file_path: str) -> datetime:
-    audita_start_line: str = ""
     with open(audita_file_path, "r") as f:
-        for line in f:
-            line: str
-            if TARGET in line:
-                audita_start_line = line
-                break 
-    date_match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} -\d{4})', audita_start_line)
+        file_content = f.read()
 
-    if date_match:
-        date_str: str = date_match.group(1)
-        date_obj: datetime = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S.%f %z')
-    
-    if not date_obj:
-        raise ValueError("Date de début introuvable, veuillez modifier la date de début.")
-    
+    # Extraction of all the dates from the file
+    date_matches = re.findall(DATETIME_PATTERN, file_content)
+    if not date_matches:
+        raise ValueError("Date introuvable dans le fichier.")
+
+    # Convertion of the dates in datetimes
+    parsed_dates = [datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f %z") for date_str in date_matches]
+
+    # Return first date
+    date_obj = min(parsed_dates)
     return date_obj
 
 def get_end_time(audita_file_path: str) -> datetime:
-    audita_start_line: str = ""
     with open(audita_file_path, "r") as f:
-        for line in f:
-            line: str
-            if TARGET_COMPLETE in line:
-                audita_start_line = line
-                break 
-    date_match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} -\d{4})', audita_start_line)
+        file_content = f.read()
 
-    if date_match:
-        date_str: str = date_match.group(1)
-        date_obj: datetime = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S.%f %z')
-    
-    if not date_obj:
-        raise ValueError("Date de début introuvable, veuillez modifier la date de début.")
-    
+    # Extraction of all the dates from the file
+    date_matches = re.findall(DATETIME_PATTERN, file_content)
+    if not date_matches:
+        raise ValueError("Date introuvable dans le fichier.")
+
+    # Convertion of the dates in datetimes
+    parsed_dates = [datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f %z") for date_str in date_matches]
+
+    # Return second date
+    date_obj = max(parsed_dates)
     return date_obj
