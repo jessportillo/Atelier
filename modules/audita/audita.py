@@ -5,7 +5,7 @@ import re
 
 LOWER_EXTREMUM_THRESHOLD = timedelta(minutes=1)
 HIGHER_EXTREMUM_THRESHOLD = timedelta(hours=4000)
-DEFAULT_ASSIGNEMENT_DURATION = timedelta(minutes=5)
+DEFAULT_ASSIGNEMENT_DURATION = timedelta(minutes=1)
 DATETIME_PATTERN = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} [+-]\d{4}"
 
 def interpret_audita_files(audita_file_paths: List[str]):
