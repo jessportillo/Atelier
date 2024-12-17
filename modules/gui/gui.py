@@ -85,13 +85,14 @@ class GUI(QWidget):
         self.start_button = QPushButton("Calculer")
         self.start_button.setFixedHeight(25)
         self.start_button.setStyleSheet("""
-        QPushButton:hover {
-                                        background-color: white;
+                                        QPushButton{
+                                        color: blue;
+                                        }
+                                        QPushButton:hover {
+
                                         color: blue;  
                                         font-weight: bold;
-                                        border: 1px solid black;
-                                        border-radius: 5px; 
-            }
+                                        }
                                        """)
         self.start_button.setEnabled(False)  # Initially disabled
         self.start_button.clicked.connect(self.start_program)
