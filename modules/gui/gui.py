@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QPushButton,
     QFileDialog, QLabel, QListView,
-    QAbstractItemView, QTreeView, QDateTimeEdit , QDialog
+    QAbstractItemView, QTreeView, QDateTimeEdit , QDialog , QScrollArea
 )
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QDateTime, Qt
@@ -24,7 +24,15 @@ class GUI(QWidget):
         # Button Help
         help_button = QPushButton("Aide")
         help_button.setFixedSize(60,30)
-        help_button.setStyleSheet("color: darkgrey; font-weight: bold;")
+        help_button.setStyleSheet("""
+                                   QPushButton { 
+                                    color: black;
+                                    }
+                                    QPushButton:hover {
+                                    font-weight: bold;
+                                    }
+
+                                    """)
         help_button.clicked.connect(self.open_help_window)
         layout.addWidget(help_button)
 
@@ -101,24 +109,22 @@ class GUI(QWidget):
     def open_help_window(self):
         help_dialog = QDialog(self)
         help_dialog.setWindowTitle("Guide d'utilisation")
-        help_dialog.setGeometry(100, 100, 800, 600)  
+        help_dialog.setGeometry(100, 100, 1000, 800)  
 
-        help_layout = QVBoxLayout(help_dialog)
-        help_label = QLabel(help_dialog)
-        pixmap = QPixmap("ressources/guide_utilisation.png")  
+        scroll_area = QScrollArea(help_dialog)
+        scroll_area.setWidgetResizable(True)
+        help_label = QLabel()
+        pixmap = QPixmap("ressources/guide_utilisation.png") 
         if pixmap.isNull():
             help_label.setText("Le guide d'utilisation n'a pas pu être chargé.")
         else:
-            help_label.setPixmap(pixmap.scaled(
-            help_dialog.width(), 
-            help_dialog.height(), 
-            Qt.KeepAspectRatio, 
-            Qt.SmoothTransformation
-        ))
+            help_label.setPixmap(pixmap)
+            help_label.setAlignment(Qt.AlignCenter)
+            scroll_area.setWidget(help_label)
             
-        help_label.setAlignment(Qt.AlignCenter)
-        help_layout.addWidget(help_label)
-        help_dialog.setLayout(help_layout)
+        layout = QVBoxLayout(help_dialog)
+        layout.addWidget(scroll_area)
+        help_dialog.setLayout(layout)
 
         help_dialog.exec()
 
